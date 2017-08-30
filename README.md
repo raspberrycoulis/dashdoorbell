@@ -38,7 +38,7 @@ You can also customise the message received in Pushover by editing any of the fo
 * message
 * url
 * url_title
-* sound (a full list of the sound effects in Pushover can be found [here](https://pushover.net/api#sounds)
+* sound (a full list of the sound effects in Pushover can be found [here](https://pushover.net/api#sounds))
 
 If you are feeling creative, you can also enable HTML messaging by changing `html` from `0` to `1`.
 
