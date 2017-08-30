@@ -58,6 +58,8 @@ After=multi-user.target
 [Service]
 Type=idle
 ExecStart=/usr/bin/python /home/pi/github/dashdoorbell/dashdoorbell.py > /home/pi/github/dashdoorbell/dashdoorbell.log 2>&1
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
