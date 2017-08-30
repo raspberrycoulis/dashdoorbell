@@ -21,6 +21,8 @@ There are various methods to obtaining the MAC address of the Dash Button, but I
 
 ## Clone this repository
 
+Unless you want to manually create the Python script yourself, simply clone this by running:
+
 ````git clone https://github.com/raspberrycoulis/dashdoorbell.git````
 
 ## Substitute the relevant parts in the dashdoorbell.py script
