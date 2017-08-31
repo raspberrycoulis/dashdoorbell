@@ -65,7 +65,7 @@ RestartSec=5
 WantedBy=multi-user.target
 ````
 
-The parts to check are the `ExecStart` command as this assumes the `dashdoorbell.py` script is located in `/home/pi/githun/dashdoorbell` so please update accordingly if you have installed the script in a different location.
+The parts to check are the `ExecStart` command as this assumes the `dashdoorbell.py` script is located in `/home/pi/github/dashdoorbell` so please update accordingly if you have installed the script in a different location.
 
 Once you have done this, `Ctrl+X` to exit and `Y` to save then run:
 
