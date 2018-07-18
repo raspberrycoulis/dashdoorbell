@@ -49,6 +49,3 @@ def udp_filter(pkt):
 mac_to_action = {DASH_BUTTON_MAC : pushover}
 mac_id_list = list(mac_to_action.keys())
 sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_list)
-
-if __name__ == "__main__":
- main()
