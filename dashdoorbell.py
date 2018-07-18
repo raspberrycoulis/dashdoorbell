@@ -15,13 +15,17 @@ from scapy.all import *
 # Set your Dash Button's MAC address below
 DASH_BUTTON_MAC = 'xx:xx:xx:xx:xx:xx'
 
+# Add your Pushover tokens below
+APP_TOKEN = 'ADD_YOURS_HERE'    # The app token - required for Pushover
+USER_TOKEN = 'ADD_YOURS_HERE'   # Ths user token - required for Pushover
+
 # Function to trigger the Pushover notification
 def pushover():
     conn = httplib.HTTPSConnection("api.pushover.net:443")
     conn.request("POST", "/1/messages.json",
         urllib.urlencode({
-            "token":"PUSHOVER_API_TOKEN",       # Get this from your Pushover app
-            "user":"PUSHOVER_USER_TOKEN",       # Get this from your Pushover account
+            "token": APP_TOKEN,       # Get this from your Pushover app
+            "user": USER_TOKEN,       # Get this from your Pushover account
             "html":"0",	                        # 1 to enable
             "title":"Doorbell!",
             "message":"There's somebody at the door!",
