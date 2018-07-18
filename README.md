@@ -8,22 +8,30 @@ This app relies on [Pushover](https://pushover.net) which costs around £4.99 on
 
 Please run the following before:
 
-````
-sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install python-scapy tcpdump -y
-````
+```bash
+sudo apt-get update && sudo apt-get dist-upgrade -y
+sudo apt-get install python-scapy tcpdump python-pip -y
+sudo pip install requests
+```
 
-## Capturing the Amazon Dash Button's MAC address
+## Find your Amazon Dash Button's MAC address
 
-Setup the Amazon Dash Button using the iOS or Android app, but stop before you add a product. Force close the app on your device to be safe.
+You will need to add your Amazon Dash Button's MAC address to the `dashdoorbell.py` script for this to work. Details on how to find out your MAC address can be found [here](https://www.raspberrypi.org/magpi/hack-amazon-dash-button-raspberry-pi/) and then replace the following in the script:
 
-There are various methods to obtaining the MAC address of the Dash Button, but I simply used [Fing](https://www.fing.io/) to scan my network and then copied the MAC address from the button.
+```python
+# Set your Dash Button's MAC address below
+DASH_BUTTON_MAC = 'xx:xx:xx:xx:xx:xx'
+```
+
+Replace the `xx:xx:xx:xx:xx:xx` with your MAC address, but ensure **it is all lower case!**
 
 ## Clone this repository
 
 Unless you want to manually create the Python script yourself, simply clone this by running:
 
-````git clone https://github.com/raspberrycoulis/dashdoorbell.git````
+```bash
+git clone https://github.com/raspberrycoulis/dashdoorbell.git
+```
 
 ## Substitute the relevant parts in the dashdoorbell.py script
 
@@ -46,11 +54,13 @@ If you are feeling creative, you can also enable HTML messaging by changing `htm
 
 I prefer to use systemd to run Python scripts on boot as you can run them as a service, start, stop, restart them and check the status of them easily. To do so, you need to do the following:
 
-````sudo nano /lib/systemd/system/dashdoorbell.service````
+```bash
+sudo nano /lib/systemd/system/dashdoorbell.service
+```
 
 Then add the following:
 
-````
+```bash
 [Unit]
 Description=Amazon Dash Doorbell Service
 After=multi-user.target
@@ -63,16 +73,16 @@ RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
-````
+```
 
 The parts to check are the `ExecStart` command as this assumes the `dashdoorbell.py` script is located in `/home/pi/github/dashdoorbell` so please update accordingly if you have installed the script in a different location.
 
 Once you have done this, `Ctrl+X` to exit and `Y` to save then run:
 
-````
+```bash
 sudo chmod 644 /lib/systemd/system/dashdoorbell.service
 sudo systemctl daemon-reload
 sudo systemctl enable dashdoorbell.service
-````
+```
 
 You can `sudo reboot` or simply run `sudo systemctl start dashdoorbell.service` to start the script. Check the status by running `sudo systemctl status dashdoorbell.service`.
